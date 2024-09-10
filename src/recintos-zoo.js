@@ -42,12 +42,11 @@ class RecintosZoo {
             const espacoRestante = recinto.tamanho - recinto.totalUsado;
             const espacoNecessario = infoAnimal.tamanho * quantidade;
 
-            //Verificar biomas
+            //Verificar se o bioma do recinto está incluído na lista de biomas onde o animal pode viver e se for savana ou rio, verifica se o animal pode viver em um ou outro
             if (
               infoAnimal.biomas.includes(recinto.bioma) ||
-              (recinto.bioma === "savana e rio" &&
-                infoAnimal.biomas.includes("savana"))
-            ) {
+              (recinto.bioma === "savana e rio" && (infoAnimal.biomas.includes("savana") || infoAnimal.biomas.includes("rio"))))
+             {
               //Verificar espacos
               if (espacoRestante >= espacoNecessario) {
                 //Verifica se já há algum animal carnívoro no recinto
@@ -59,22 +58,20 @@ class RecintosZoo {
 
                 //Convivencia entre animais
                 if (
-                  (isCarnivoro &&
-                    !carnívorosPresentes &&
-                    recinto.ocupacao.length === 0) ||
+                  (recinto.ocupacao.length === 0 && isCarnivoro) ||
                   (!isCarnivoro &&
                     (recinto.ocupacao.length === 0 || !carnívorosPresentes))
                 ) {
                   let espacoLivre = espacoRestante - espacoNecessario;
-            
-
-
 
                   // Ajustar espaço extra se houver mais de uma espécie
-                  
-                  if (recinto.ocupacao.length > 0 && !recinto.ocupacao.some(item => item.especie === animal.toLowerCase())
+                  if (
+                    recinto.ocupacao.length > 0 &&
+                    !recinto.ocupacao.some(
+                      (item) => item.especie === animal.toLowerCase()
+                    )
                   ) {
-                    espacoLivre -= 1; // 1 espaço extra ocupado
+                    espacoLivre -= 1;
                   }
 
                   recintosViaveis.push(
