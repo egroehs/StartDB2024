@@ -76,13 +76,4 @@ Saída
 }
 ```
 
-### O CÓDIGO
-Você está recebendo uma estrutura básica para desenvolver a lógica do desafio. O arquivo principal está localizado dentro da pasta `src` e se chama `recintos-zoo.js`. Você pode desenvolver a sua lógica criando outros arquivos, métodos e até mesmo outras classes, porém o resultado deve poder ser obtido através do método `analisaRecintos`.
 
-> **ALERTA**:
-> É importante que essa estrutura básica não seja alterada, pois as etapas automáticas da nossa validação dependem disso. Conseguir executar os passos descritos mais adiante na seção `VALIDANDO A SOLUÇÃO` também ajudará você a verificar que seu código segue a estrutura definida.
-
-Exemplo de chamada
-```js
-  new RecintosZoo().analisaRecintos('MACACO', 2);
-```
